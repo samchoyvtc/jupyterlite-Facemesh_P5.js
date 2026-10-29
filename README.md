@@ -1,37 +1,36 @@
-# JupyterLite Demo
+# p5.js FaceMesh — 45-minute class
 
-[![lite-badge](https://jupyterlite.rtfd.io/en/latest/_static/badge.svg)](https://jupyterlite.github.io/demo)
+A JupyterLite site for one 45-minute class. Students open a working p5.js sketch, allow the camera, and edit a few lines so ml5 FaceMesh draws points on their face.
 
-JupyterLite deployed as a static site to GitHub Pages, for demo purposes.
+Live site (after a push to `main`):
 
-## ✨ Try it in your browser ✨
+**https://samchoyvtc.github.io/jupyterlite-Facemesh_P5.js/**
 
-➡️ **https://jupyterlite.github.io/demo**
+## Class shape
 
-![github-pages](https://user-images.githubusercontent.com/591645/120649478-18258400-c47d-11eb-80e5-185e52ff2702.gif)
+| Time | What students do |
+| --- | --- |
+| 0–8 min | Open `facemesh.ipynb`, run every code cell, allow the camera |
+| 8–18 min | Follow four ideas: `setup`, `draw`, `ml5.faceMesh`, and the keypoint loop |
+| 18–30 min | Change point size and color, then run that cell again |
+| 30–42 min | Turn on the nose and eye marks |
+| 42–45 min | Show the sketch to a neighbor |
 
-## Requirements
+The camera stream and the face model stay in the browser.
 
-JupyterLite is being tested against modern web browsers:
+## What is in the site
 
-- Firefox 90+
-- Chromium 89+
+- [content/README.md](content/README.md) — the three steps students see in the file browser
+- [content/facemesh.ipynb](content/facemesh.ipynb) — the only lesson
+- [content/reference/landmarks.md](content/reference/landmarks.md) — nose and eye point numbers
 
-## Deploy your JupyterLite website on GitHub Pages
+Lesson code avoids backticks. The p5 kernel replays cells inside a template string, so a backtick in a cell breaks the sketch.
 
-Check out the guide on the JupyterLite documentation: https://jupyterlite.readthedocs.io/en/latest/quickstart/deploy.html
+## Deploy
 
-## Further Information and Updates
+GitHub Actions builds this folder with JupyterLite and publishes `dist/` to GitHub Pages on every push to `main`. Pages must use **GitHub Actions** as the source.
 
-For more info, keep an eye on the JupyterLite documentation:
-
-- How-to Guides: https://jupyterlite.readthedocs.io/en/latest/howto/index.html
-- Reference: https://jupyterlite.readthedocs.io/en/latest/reference/index.html
-
-This template provides the Pyodide kernel (`jupyterlite-pyodide-kernel`), the JavaScript kernel (`jupyterlite-javascript-kernel`), and the p5 kernel (`jupyterlite-p5-kernel`), along with other
-optional utilities and extensions to make the JupyterLite experience more enjoyable. See the
-[`requirements.txt` file](requirements.txt) for a list of all the dependencies provided.
-
-For a template based on the Xeus kernel, see the [`jupyterlite/xeus-python-demo` repository](https://github.com/jupyterlite/xeus-python-demo)
-
-
+```bash
+python -m pip install -r requirements.txt
+jupyter lite build --contents content --output-dir dist
+```
